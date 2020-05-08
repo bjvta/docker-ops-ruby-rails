@@ -21,6 +21,26 @@ RUN set -eux \
         build-base \
         bash
 
+# Install node yarn
+RUN set -eux \
+    & apk add \
+        --no-cache \
+        nodejs \
+        yarn
+
+# Library headers to build ruby rails packages
+RUN set -eux \
+    & apk add \
+        --no-cache \
+        ruby-etc \
+        ruby-bigdecimal \
+        ruby-io-console \
+        ruby-irb \
+        ca-certificates \
+        libressl \
+# tools database
+        postgresql-dev
+
 # Setup non-root user
 RUN set -eux \
     \

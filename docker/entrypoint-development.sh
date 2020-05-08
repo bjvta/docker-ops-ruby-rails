@@ -15,6 +15,8 @@ success() { echo -e "${RESET}${GREEN}${BOLD}${*}${RESET}"; }
 step "Environment: ${ENVIRONMENT}"
 step "Current dir: $(pwd)"
 step "Ruby version: $(ruby -v)"
+step "Node version: $(node -v)"
+step "Yarn version: $(yarn -v)"
 
 # SETUP AND CHECK DEFINITIONS
 
