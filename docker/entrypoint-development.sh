@@ -32,7 +32,7 @@ function setup_shell() {
 }
 
 function setup_initialized() {
-    if [[ ! -f /app/Gemfile ]]; then return 0; fi
+#    if [[ ! -f /app/Gemfile ]]; then return 0; fi
     if [[ -f /app/.initialized ]]; then return 0; fi
 
     step "Installing requirements"
@@ -40,9 +40,9 @@ function setup_initialized() {
     (
         set -x
 
-        chown app.app -R /usr/local/bundle
+#        chown app.app -R /usr/local/bundle
 
-        gosu app gem install bundler | cat
+#        gosu app gem install bundler | cat
 
         gosu app touch /app/.initialized
     )
@@ -60,7 +60,7 @@ case "$1" in
     --shell)
         (
             setup_shell
-            setup_initialized
+            #setup_initialized
         )
 
         # Switch to app user
