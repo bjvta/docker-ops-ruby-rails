@@ -31,6 +31,26 @@ function setup_shell() {
     step "Setup shell $(success [Done])"
 }
 
+function setup_initialized() {
+    if [[ ! -f /app/Gemfile.lock ]]; then return 0; fi
+    if [[ -f /app/.initialized ]]; then return 0; fi
+
+    step "Installing requirements"
+
+    (
+        set -x
+
+        chown app.app -R /usr/local/bundle
+
+        gosu app gem install bundler | cat
+
+        gosu app touch /app/.initialized
+    )
+
+    step "Initialized $(success [Done])"
+}
+
+
 case "$1" in
     -)
         # Switch to app user
@@ -40,6 +60,7 @@ case "$1" in
     --shell)
         (
             setup_shell
+            setup_initialized
         )
 
         # Switch to app user
