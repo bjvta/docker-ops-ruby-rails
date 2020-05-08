@@ -12,3 +12,8 @@ build:
 .PHONY: backend
 backend:
 	docker-compose run --rm --service-ports --use-aliases backend --shell
+
+
+.PHONY: runserver
+runserver:
+	cd labtrendig && bundle exec rails s -b 0.0.0.0 -p 8000
