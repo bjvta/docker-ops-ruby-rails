@@ -60,7 +60,7 @@ case "$1" in
     --shell)
         (
             setup_shell
-            setup_initialized
+            #setup_initialized
         )
 
         # Switch to app user
