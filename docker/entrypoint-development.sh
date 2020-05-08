@@ -32,7 +32,7 @@ function setup_shell() {
 }
 
 function setup_initialized() {
-    if [[ ! -f /app/Gemfile.lock ]]; then return 0; fi
+    if [[ ! -f /app/Gemfile ]]; then return 0; fi
     if [[ -f /app/.initialized ]]; then return 0; fi
 
     step "Installing requirements"
