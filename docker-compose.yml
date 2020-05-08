@@ -1,0 +1,15 @@
+version: "3.7"
+
+services:
+  backend:
+    image: ruby-alpine:develop
+    hostname: app
+    ports:
+      - "8000:8000"
+
+    volumes:
+      - ".:/app"
+      - "home:/home/app"
+
+volumes:
+  home:
