@@ -1,10 +1,10 @@
 build:
-	docker build \
+	cd docker && docker build \
 		--target base \
 		--tag ruby-alpine:latest \
 		.
 
-	docker build \
+	cd docker && docker build \
 		--target develop \
 		--tag ruby-alpine:develop \
 		.
