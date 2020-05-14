@@ -1,9 +1,6 @@
 .PHONY: default
 default: create_db
-	cd labtrendig && bundle config set path 'vendor/bundle'
-
-bundle_install:
-	cd labtrendig && bundle install
+	cd labtrendig && bundle install --system
 
 create_db: bundle_install
 	cd labtrendig && bundle exec rake db:create
@@ -17,8 +14,8 @@ backend:
 
 
 .PHONY: run_server
-run_server:
-	cd labtrendig && bundle exec rails s -b 0.0.0.0 -p 8000
+runserver:
+	cd labtrendig && rails s -b 0.0.0.0 -p 8000
 
 build:
 	cd docker && docker build \
