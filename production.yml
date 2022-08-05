@@ -1,0 +1,56 @@
+version: "3.7"
+
+services:
+  database:
+    image: postgres:11
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: labtrendig
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    # networks:
+    #   staging_network:
+
+  # redis:
+  #   image: redis:alpine
+  #   volumes:
+  #     - redisdata:/data
+  #   networks:
+  #     staging_network:
+
+  backend:
+    image: ruby-alpine:production
+    hostname: app
+    # env_file: .env-staging.lux
+    restart: always
+    ports:
+      - "8000:8000"
+    environment:
+      ENVIRONMENT: production
+      # COMMIT_SHA: {{COMMIT_SHA}}
+      PORT: 8000 # port uwsgi
+      # VIRTUAL_PORT: "8000"
+      # VIRTUAL_HOST: "dev.trendig.com,www.dev.trendig.com"
+      # LETSENCRYPT_HOST: "dev.trendig.com,www.dev.trendig.com"
+      # LETSENCRYPT_EMAIL: "josuedjh456@gmail.com"
+    links:
+      - "database:database"
+      # - "redis:redis"
+    # volumes:
+    #   - "./backup_db:/app/backup_db"
+    #   - "./documents:/app/public/documents"
+    # networks:
+    #   staging_network:
+
+# networks:
+#   staging_network:
+#     external:
+#       name: dev_staging_net
+
+
+volumes:
+  # documents:
+  # backup_db:
+  pgdata:
+  # redisdata:

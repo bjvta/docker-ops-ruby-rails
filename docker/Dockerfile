@@ -49,6 +49,11 @@ RUN set -eux \
     \
     && mkdir -p /app
 
+ENV LANG="C.UTF-8" \
+    LANGUAGE="en_US:en" \
+    LC_COLLATE="C" \
+    GEM_HOME="/usr/local/bundle"
+
 # Setup folder root
 WORKDIR "/app"
 
@@ -66,6 +71,8 @@ RUN set -eux \
     && mkdir /home/app \
     && chown app:app -R /home/app \
     && gosu app cp -R /etc/skel/. /home/app/
+
+RUN bundle config build.nokogiri --use-system-librarie
 
 VOLUME /home/app
 
